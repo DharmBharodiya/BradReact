@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 
-function Rating() {
+function Rating({
+    heading="Rate Your Experience",
+    feedbackMessages = ['Terrible', 'Okay','Good', "Nice", "Excellent"],
+
+}) {
 
     //this method create array using JS method to create an Array
     // it takes two arguments first one is to be an iterable or an array like object, here it is length which helps in defining the number of elements for the array that is being formed
@@ -11,13 +15,12 @@ function Rating() {
 
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
-  const feedbackMessages = ['Terrible', 'Okay','Good', "Nice", "Excellent"];
 
   return (
     <div
-    className='bg-white font-bold px-20 py-15 rounded-md'
+    className='bg-white font-bold px-20 py-15 rounded-md mt-10'
     >
-        <h1 className='text-2xl text-blue-900'>Rate Your Experience</h1>
+        <h1 className='text-2xl text-blue-900'>{heading}</h1>
         <div
         className='flex justify-between items-center mt-4'
         >
