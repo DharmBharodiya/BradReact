@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Rating() {
 
@@ -9,13 +9,9 @@ function Rating() {
     // for i = 0, i + 1 => 0 + 1 = 1 similary it'll form an array like [1,2,3,4,5]
   const stars = Array.from({length: 5}, (_, i) => i + 1);
 
-  const handleClick = (index) => {
-    console.log("star was clicked", index)
-  }
-
-  const hovered = (message) => {
-    console.log(message)
-  }
+  const [rating, setRating] = useState(0)
+  const [hover, setHover] = useState(0)
+  const feedbackMessages = ['Terrible', 'Okay','Good', "Nice", "Excellent"];
 
   return (
     <div
@@ -25,18 +21,24 @@ function Rating() {
         <div
         className='flex justify-between items-center mt-4'
         >
-            {stars.map((star, index) => (
+            
+            {stars.map((star) => (
                 <span
                 key={star}
-                className='text-3xl text-gray-400 hover:cursor-pointer'
-                onClick={() => handleClick(index + 1)}
-                onMouseEnter={() => hovered("entered")}
-                onMouseLeave={() => hovered("leave")}
+                className={`text-3xl hover:cursor-pointer 
+                    ${star <= (hover || rating) ? 'text-yellow-400' : 'text-gray-400'}
+                    `}
+                onClick={() => setRating(star)}
+                onMouseEnter={() => setHover(star)}
+                onMouseLeave={() => setHover(0)}
                 >
                     {'\u2605'}
                 </span>
             ))}
         </div>
+        <h1
+        className={'text-center mt-2 text-blue-900'}
+        >{feedbackMessages[rating - 1]}</h1>
     
     </div>
   )
