@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Star from './Star';
+import Modal from './Modal';
 
 function Rating({
     heading="Rate Your Experience",
@@ -13,12 +15,24 @@ function Rating({
     // for i = 0, i + 1 => 0 + 1 = 1 similary it'll form an array like [1,2,3,4,5]
   const stars = Array.from({length: 5}, (_, i) => i + 1);
 
-  const [rating, setRating] = useState(0)
-  const [hover, setHover] = useState(0)
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  
+  const handleSubmit = () => {
+    setSubmitted(true);
+  }
+
+  const handleClose = () => {
+    setSubmitted(false);
+    setRating(0)
+    setHover(0)
+  }
+
 
   return (
     <div
-    className='bg-white font-bold px-20 py-15 rounded-md mt-10'
+    className='bg-white font-bold px-15 py-10 rounded-md mt-10'
     >
         <h1 className='text-2xl text-blue-900'>{heading}</h1>
         <div
@@ -26,22 +40,47 @@ function Rating({
         >
             
             {stars.map((star) => (
-                <span
+                // <span
+                // key={star}
+                // className={`text-3xl hover:cursor-pointer 
+                //     ${star <= (hover || rating) ? 'text-yellow-400' : 'text-gray-400'}
+                //     `}
+                // onClick={() => setRating(star)}
+                // onMouseEnter={() => setHover(star)}
+                // onMouseLeave={() => setHover(0)}
+                // >
+                //     {'\u2605'}
+                // </span>
+
+                <Star
                 key={star}
-                className={`text-3xl hover:cursor-pointer 
-                    ${star <= (hover || rating) ? 'text-yellow-400' : 'text-gray-400'}
-                    `}
-                onClick={() => setRating(star)}
-                onMouseEnter={() => setHover(star)}
-                onMouseLeave={() => setHover(0)}
-                >
-                    {'\u2605'}
-                </span>
+                star={star}
+                rating={rating}
+                hover={hover}
+                rateFn={setRating}
+                mouseFn={setHover}
+                />
             ))}
         </div>
         <h1
-        className={'text-center mt-2 text-blue-900'}
+        className={'text-center text-lg mt-4 text-blue-900'}
         >{feedbackMessages[rating - 1]}</h1>
+
+        <div
+        className='flex justify-center items-center mt-2'
+        >
+            <button
+            className={`${rating === 0 ? "bg-gray-600" : "bg-blue-600 hover:bg-blue-800"} text-white px-5 py-2 rounded-md text-sm font-medium cursor-pointer `}
+            onClick={handleSubmit}
+            disabled={rating === 0}
+            >Submit</button>
+        </div>
+        
+        <Modal
+        isOpen={submitted}
+        closeModal={handleClose}
+        rating={rating}
+        />
     
     </div>
   )
