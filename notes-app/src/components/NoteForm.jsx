@@ -35,11 +35,11 @@ function NoteForm({notes, setNotes}) {
         newNote,
         ...notes
     ]);
-    
+
     // make all the fields back to default
     setFormData({
         title:'',
-        priority: 'Medium',
+        priority: 'medium',
         category: 'work',
         description: ''
     })

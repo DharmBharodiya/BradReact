@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import NoteForm from './components/NoteForm'
+import Note from './components/Note';
 
 function App() {
 
+  // notes array that will store all the notes and its respective data
   const [notes, setNotes] = useState([]);
 
   return (
@@ -14,6 +16,8 @@ function App() {
       >📝Jot the Note</div>
 
       <NoteForm notes={notes} setNotes={setNotes}/>
+
+      <Note notes={notes} />
     </div>
   )
 }
