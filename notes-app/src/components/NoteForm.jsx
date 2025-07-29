@@ -2,10 +2,25 @@ import React, { useState } from 'react'
 
 function NoteForm() {
 
-  const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState("medium");
-  const [category, setCategory] = useState("work");
-  const [description, setDescription] = useState("");
+//   const [title, setTitle] = useState("");
+//   const [priority, setPriority] = useState("medium");
+//   const [category, setCategory] = useState("work");
+//   const [description, setDescription] = useState("");
+
+//a single place to store all the related data of the form
+  const [formData, setFormData] = useState({
+    title: "",
+    priority: 'medium',
+    category: "work",
+    description: '',
+  })
+
+  const handleChange = (e) => {
+    setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+    })
+  }
 
   return (
     <form
@@ -17,9 +32,9 @@ function NoteForm() {
             <label htmlFor='title' className='font-medium'>Title</label>
             <input
             type="text"
-            id='title'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            name='title'
+            value={formData.title}
+            onChange={handleChange}
             className='w-full px-2 py-1 border-1 rounded-lg'
             />
         </div>
@@ -29,9 +44,9 @@ function NoteForm() {
             <label htmlFor='priority' className='font-medium'>Priority</label>
             <select
             type="text"
-            id='priority'
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
+            name='priority'
+            value={formData.priority}
+            onChange={handleChange}
             className='w-full px-2 py-1 border-1 rounded-lg'
             >
                 <option value="high">🔴High</option>
@@ -46,9 +61,9 @@ function NoteForm() {
             <label htmlFor='category' className='font-medium'>Category</label>
             <select
             type="text"
-            id='category'
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            name='category'
+            value={formData.category}
+            onChange={handleChange}
             className='w-full px-2 py-1 border-1 rounded-lg'
             >
                 <option value="work">💻 Work</option>
@@ -64,9 +79,9 @@ function NoteForm() {
             <label htmlFor='description' className='font-medium'>Description</label>
             <textarea
             type="text"
-            id='description'
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            name='description'
+            value={formData.description}
+            onChange={handleChange}
             className='w-full px-2 py-1 border-1 rounded-lg'
             placeholder='Write your note here.....'
             ></textarea>
