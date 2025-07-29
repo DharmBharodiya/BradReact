@@ -15,6 +15,8 @@ function NoteForm({notes, setNotes}) {
     description: '',
   })
 
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
         ...formData,
@@ -46,8 +48,19 @@ function NoteForm({notes, setNotes}) {
 }
 
   return (
-    <form
-    className='flex justify-center flex-col'
+    <>
+
+    <div>
+        <button
+        onClick={() => setIsFormVisible(!isFormVisible)}
+        className='px-4 py-2 border-2 border-gray-400 rounded-lg hover:border-purple-400 hover:bg-purple-200 transition-all duration-200 cursor-pointer w-full mb-4 mt-2'
+        >
+            {isFormVisible ? "Hide Form ❌" : "Add new note ➕"}
+        </button>
+    </div>
+    {
+        isFormVisible && (<form
+    className='flex justify-center flex-col transition-all duration-300'
     onSubmit={handleSubmit}
     >
         <div
@@ -116,7 +129,9 @@ function NoteForm({notes, setNotes}) {
             type='submit'
             >Add Note</button>
         </div>
-    </form>
+    </form>)
+    }
+    </>
   )
 }
 
