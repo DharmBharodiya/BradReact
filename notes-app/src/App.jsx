@@ -1,4 +1,5 @@
 import React from 'react'
+import NoteForm from './components/NoteForm'
 
 function App() {
   return (
@@ -8,6 +9,8 @@ function App() {
       <div
       className='text-2xl font-bold text-center mb-4'
       >📝Jot the Note</div>
+
+      <NoteForm/>
     </div>
   )
 }
