@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function NoteForm() {
+function NoteForm({notes, setNotes}) {
 
 //   const [title, setTitle] = useState("");
 //   const [priority, setPriority] = useState("medium");
@@ -22,9 +22,33 @@ function NoteForm() {
     })
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //validate the form 
+    if(!formData.title || !formData.description) return;
+
+    const newNote = {id: Date.now(), ...formData};
+
+    // add the formdata to the notes state
+    setNotes([
+        newNote,
+        ...notes
+    ]);
+    
+    // make all the fields back to default
+    setFormData({
+        title:'',
+        priority: 'Medium',
+        category: 'work',
+        description: ''
+    })
+}
+
   return (
     <form
     className='flex justify-center flex-col'
+    onSubmit={handleSubmit}
     >
         <div
         className='flex flex-col mb-4'
@@ -89,6 +113,7 @@ function NoteForm() {
         <div>
             <button
             className='w-full bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-900 transition-all duration-150 cursor-pointer'
+            type='submit'
             >Add Note</button>
         </div>
     </form>
