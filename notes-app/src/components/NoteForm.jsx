@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import TextInput from './inputs/TextInput';
+import SelectOption from './inputs/SelectOption';
 
 function NoteForm({notes, setNotes}) {
 
@@ -63,7 +65,7 @@ function NoteForm({notes, setNotes}) {
     className='flex justify-center flex-col transition-all duration-300'
     onSubmit={handleSubmit}
     >
-        <div
+        {/* <div
         className='flex flex-col mb-4'
         >
             <label htmlFor='title' className='font-medium'>Title</label>
@@ -74,8 +76,14 @@ function NoteForm({notes, setNotes}) {
             onChange={handleChange}
             className='w-full px-2 py-1 border-1 rounded-lg'
             />
-        </div>
-         <div
+        </div> */}
+        <TextInput
+        label="Title"
+        value={formData.title}
+        handleChange={handleChange}
+        required
+        />
+         {/* <div
         className='flex flex-col mb-4'
         >
             <label htmlFor='priority' className='font-medium'>Priority</label>
@@ -90,9 +98,17 @@ function NoteForm({notes, setNotes}) {
                 <option value="medium">🟡Medium</option>
                 <option value="low">🟢Low</option>
             </select>
-        </div>
+        </div> */}
 
-        <div
+        <SelectOption
+        name="priority"
+        label="Priority"
+        value={formData.priority}
+        handleChange={handleChange}
+        options={["🔴High", "🟡Medium", "🟢Low"]}
+        />
+
+        {/* <div
         className='flex flex-col mb-4'
         >
             <label htmlFor='category' className='font-medium'>Category</label>
@@ -108,7 +124,15 @@ function NoteForm({notes, setNotes}) {
                 <option value="shopping">🛒 Shopping</option>
                 <option value="fun">🧸 Fun</option>
             </select>
-        </div>
+        </div> */}
+
+         <SelectOption
+        name="category"
+        label="Category"
+        value={formData.category}
+        handleChange={handleChange}
+        options={["💻 Work", "🎒 Education", "🛒 Shopping", "🧸 Fun"]}
+        />
 
         <div
         className='flex flex-col mb-4'
