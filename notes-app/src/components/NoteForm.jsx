@@ -78,6 +78,7 @@ function NoteForm({notes, setNotes}) {
             />
         </div> */}
         <TextInput
+        name="title"
         label="Title"
         value={formData.title}
         handleChange={handleChange}
@@ -105,7 +106,16 @@ function NoteForm({notes, setNotes}) {
         label="Priority"
         value={formData.priority}
         handleChange={handleChange}
-        options={["🔴High", "🟡Medium", "🟢Low"]}
+        options={
+            [
+                {value: "high",
+                label: "🔴High"},
+                {value: "medium",
+                label: "🟡Medium"},
+                {value: "low",
+                label: "🟢Low"},
+            ]
+        }
         />
 
         {/* <div
@@ -131,7 +141,18 @@ function NoteForm({notes, setNotes}) {
         label="Category"
         value={formData.category}
         handleChange={handleChange}
-        options={["💻 Work", "🎒 Education", "🛒 Shopping", "🧸 Fun"]}
+        options={
+            [
+                {value: "work",
+                label: "💻 Work"},
+                {value: "education",
+                label: "🎒 Education"},
+                {value: "shopping",
+                label: "🛒 Shopping"},
+                {value: "fun",
+                label: "🧸 Fun"},
+            ]
+        }
         />
 
         <div

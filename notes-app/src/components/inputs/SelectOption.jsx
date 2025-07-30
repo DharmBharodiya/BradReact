@@ -7,7 +7,6 @@ function SelectOption({name, label, handleChange, value, options}) {
         >
             <label htmlFor='name' className='font-medium'>{label}</label>
             <select
-            type="text"
             name={name}
             value={value}
             onChange={handleChange}
@@ -16,8 +15,8 @@ function SelectOption({name, label, handleChange, value, options}) {
                 {options.map((option, index) => (
                     <option
                     key={index}
-                    value={option}
-                    >{option}</option>
+                    value={option.value}
+                    >{option.label}</option>
                 ))}
             </select>
         </div>

@@ -7,6 +7,11 @@ function App() {
   // notes array that will store all the notes and its respective data
   const [notes, setNotes] = useState([]);
 
+  const handleDelete = (id) => {
+    setNotes(notes.filter((note) => note.id !== id));
+  }
+
+
   return (
     <div
     className='max-w-lg mx-auto mt-10 p-6 bg-gray-200 rounded-lg shadow-lg'
@@ -17,7 +22,7 @@ function App() {
 
       <NoteForm notes={notes} setNotes={setNotes}/>
 
-      <Note notes={notes} />
+      <Note notes={notes} handleDelete={handleDelete}/>
     </div>
   )
 }
