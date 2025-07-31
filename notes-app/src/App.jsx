@@ -10,6 +10,7 @@ function App() {
     return notes || [];
   });
 
+  //everytime there is some change in the notes, respective update to its localstorage will be done as soon as the change is triggered.
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes))
   }, [notes])
@@ -22,11 +23,17 @@ function App() {
 
   return (
     <div
-    className='max-w-lg mx-auto mt-10 p-6 bg-gray-200 rounded-lg shadow-lg'
+    className='w-sm sm:w-lg mt-10 sm:p-6 p-4 sm:bg-pink-600 bg-gray-200 rounded-lg shadow-lg mb-10 mx-auto'
     >
       <div
-      className='text-2xl font-bold text-center mb-4'
-      >📝Jot the Note</div>
+      className='mb-4'
+      >
+        <h1
+      className='text-xl sm:text-2xl font-bold text-center'>📝Jot the Note</h1>
+      <p
+      className='text-sm italic text-center text-gray-600'
+      >dhrm studios</p>
+      </div>
 
       <NoteForm notes={notes} setNotes={setNotes}/>
 

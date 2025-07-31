@@ -55,7 +55,7 @@ function NoteForm({notes, setNotes}) {
     <div>
         <button
         onClick={() => setIsFormVisible(!isFormVisible)}
-        className='px-4 py-2 border-2 border-gray-400 rounded-lg hover:border-purple-400 hover:bg-purple-200 transition-all duration-200 cursor-pointer w-full mb-4 mt-2'
+        className='px-2 sm:px-4 py-1 sm:py-2 border-2 border-gray-400 rounded-lg hover:border-purple-400 hover:bg-purple-200 transition-all duration-200 cursor-pointer w-full mb-4 mt-2'
         >
             {isFormVisible ? "Hide Form ❌" : "Add new note ➕"}
         </button>
