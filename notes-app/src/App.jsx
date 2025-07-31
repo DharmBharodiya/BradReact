@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div
-    className='w-sm sm:w-lg mt-10 sm:p-6 p-4 sm:bg-pink-600 bg-gray-200 rounded-lg shadow-lg mb-10 mx-auto'
+    className='w-sm sm:w-lg mt-10 sm:p-6 p-4 bg-gray-200 rounded-lg shadow-lg mb-10 mx-auto'
     >
       <div
       className='mb-4'
