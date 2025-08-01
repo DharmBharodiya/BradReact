@@ -21,6 +21,7 @@ function App() {
   }
 
   const resetTimer = () => {
+    clearInterval(timeRef.current);
     setTime(0);
     setIsRunning(false);
     timeRef.current = null;
