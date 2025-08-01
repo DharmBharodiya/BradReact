@@ -1,9 +1,17 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Timer from "./components/Timer";
 
 function App() {
 
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(() => {
+    return Number(localStorage.getItem("time")) || 0
+
+  });
+
+  useEffect(() => {
+    localStorage.setItem("time",JSON.stringify(time))
+  },[time])
+
   const [isRunning, setIsRunning] = useState(false);
 
   const timeRef = useRef(null);
@@ -26,6 +34,7 @@ function App() {
     setTime(0);
     setIsRunning(false);
     timeRef.current = null;
+    localStorage.removeItem("time");
   }
 
   return (
