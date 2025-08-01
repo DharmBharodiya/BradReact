@@ -1,49 +1,31 @@
-import React, { useRef } from 'react'
+import { useState } from "react";
 
 function App() {
 
-  const inputRef = useRef(null);
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
 
-  const handleSubmit = () => {
-    // console.log(inputRef)
-    inputRef.current.focus();
-    inputRef.current.style.backgroundColor = "pink";
-    inputRef.current.style.color = "green";
-    inputRef.current.setAttribute("placeholder", "this works");
+  const toggleTimer = () => {
+    
   }
-  
 
   return (
     <div
-    className='bg-gray-400 min-h-screen max-w-full p-6'
+    className='bg-gray-300 max-w-full min-h-screen p-6'
     >
-
       <div
-      className='bg-white rounded-md px-4 py-2 flex flex-col justify-center items-center shadow-black/10 shadow-lg'
+      className='bg-white px-4 py-2 rounded-lg text-center'
       >
-        <div
-        className='text-center text-2xl mb-4'
+        <h1
+        className=" font-semibold text-3xl"
+        >⌛Timer: {time}</h1>
+        <button
+        className="text-white font-semibold px-4 py-1 bg-green-400 rounded-md mt-4 hover:bg-green-500 transition-all duration-100 cursor-pointer"
+        onclick={toggleTimer}
         >
-          💌Test Station
-        </div>
-        <div
-        className='flex flex-col'
-        >
-          <input
-          type="text"
-          placeholder='Enter text..'
-          className='border-2 border-blue-400 px-4 py-1 rounded-md'
-          ref={inputRef}
-          />
-          <button
-          className='bg-blue-400 px-3 py-1 rounded-md mt-4 text-white mb-4 shadow-lg shadow-black/20'
-          onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        </div>
+          {isRunning ? "Pause" : "Start"}
+        </button>
       </div>
-
     </div>
   )
 }
