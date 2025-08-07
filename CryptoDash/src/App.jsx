@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
-const API_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
-
+import CryptoCard from './components/CryptoCard'
+const API_URL = import.meta.env.VITE_API_URL;
 function App() {
 
   const [coins, setCoins] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [limit, setLimit] = useState(10)
 
   useEffect(() => {
     const coinFetch = async () => {
       try{
-        const res = await fetch(API_URL);
+        const res = await fetch(`${API_URL}&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false`);
         if(!res.ok) throw new Error("Failed to fetch the coins.")
 
         const data = await res.json()
@@ -42,31 +43,44 @@ function App() {
     //   setLoading(false)
     // })
 
-  },[])
+  },[limit])
 
   return (
-    <div>
-      <h1>🪙 Cryto Dash</h1>
+    <div
+    className='bg-gray-900 p-4'
+    >
+      <h1
+      className='text-white font-bold text-2xl m-4'
+      >🪙 Cryto Dash</h1>
 
       {loading && <p>Loading....</p>}
       {error && <p>{error}</p>}
-      <div>
+
+      <div
+      className='controls w-full flex relative p-1 m-4'
+      > 
+        <div
+        className='relative p-1 rounded-sm'
+        >
+          <label htmlFor='limit' className='text-white mr-1 font-semibold'>Show: </label>
+          <select className='bg-[#101010] p-1 rounded-sm text-white' id="limit" value={limit} onChange={(e) => setLimit(e.target.value)}>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+      </div>
+
+      <div
+      className='m-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+      >
         {coins.map((coin) => (
 
-          <div
+          <CryptoCard
           key={coin.id}
-          >
-            <img src={coin.image} alt={coin.name} />
-            <div>
-              <h1>{coin.name}</h1>
-              <h2>{coin.symbol.toUpperCase()}</h2>
-            </div>
-            <div>
-              <h1>Price: {coin.current_price.toLocaleString()}</h1>
-              <p>{coin.price_change_percentage_24h.toFixed(2)}%</p>
-              <p>Market Cap: {coin.market_cap.toLocaleString()}</p>
-            </div>
-          </div>
+          coin={coin}
+          />
 
         ))}
       </div>
