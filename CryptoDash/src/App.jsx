@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CryptoCard from './components/CryptoCard'
+import CardSelector from './components/CardSelector';
 const API_URL = import.meta.env.VITE_API_URL;
 function App() {
 
@@ -59,17 +60,10 @@ function App() {
       <div
       className='controls w-full flex relative p-1 m-4'
       > 
-        <div
-        className='relative p-1 rounded-sm'
-        >
-          <label htmlFor='limit' className='text-white mr-1 font-semibold'>Show: </label>
-          <select className='bg-[#101010] p-1 rounded-sm text-white' id="limit" value={limit} onChange={(e) => setLimit(e.target.value)}>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-          </select>
-        </div>
+        <CardSelector
+        onLimitChange={setLimit}
+        limit={limit}
+        />
       </div>
 
       <div
