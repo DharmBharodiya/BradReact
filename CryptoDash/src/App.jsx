@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CryptoCard from './components/CryptoCard'
 import CardSelector from './components/CardSelector';
+import FilterSearch from './components/FilterSearch';
 const API_URL = import.meta.env.VITE_API_URL;
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [limit, setLimit] = useState(10)
+  const [filter, setFilter] = useState("")
 
   useEffect(() => {
     const coinFetch = async () => {
@@ -46,6 +48,10 @@ function App() {
 
   },[limit])
 
+  const filteredCoins = coins.filter((coin) => {
+    return coin.name.toLowerCase().includes(filter) || coin.symbol.toLowerCase().includes(filter);
+  })
+
   return (
     <div
     className='bg-gray-900 p-4'
@@ -60,6 +66,10 @@ function App() {
       <div
       className='controls w-full flex relative p-1 m-4'
       > 
+        <FilterSearch
+        filter={filter}
+        onFilterChange={setFilter}
+        />
         <CardSelector
         onLimitChange={setLimit}
         limit={limit}
@@ -69,14 +79,14 @@ function App() {
       <div
       className='m-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
       >
-        {coins.map((coin) => (
+        { filteredCoins.length > 0 ? filteredCoins.map((coin) => (
 
           <CryptoCard
           key={coin.id}
           coin={coin}
           />
 
-        ))}
+        )) : <p className='text-white font-semibold text-lg ml-4'>No such coins found.</p>}
       </div>
     </div>
   )
