@@ -8,12 +8,12 @@ function AboutPage() {
         >
             <h1 className='font-bold text-4xl text-left justify-start mb-4'>About</h1>
             <div
-            className='w-[80%]'
+            className='w-[60%]'
             >
-                <p><span className='text-amber-500 italic'>Home of Cryptos,</span> is a simple React App that shows realtime cryptocurrency data, served using CoinGecko API.</p>
-                <p>You can explore the top cryptocurrency by market cap, filter by name or symbol, and sort them by price, market cap, and change in last 24-hours.</p>
-                <p>This project helps learning about routing, fetching data through API, sorting data, searching through the data, no. of data per page and other important stuff to deal with ReactJS projects in future.</p>
-                <p>for more visit <a target='_blank' href='https://dhrm.tech' className='text-blue-400'>this.</a></p>
+                <p className='mb-2 leading-5.5'><span className='text-amber-500 italic'>Home of Cryptos,</span> is a simple React App that shows realtime cryptocurrency data, served using CoinGecko API.</p>
+                <p className='mb-2 leading-5.5'>You can explore the top cryptocurrency by market cap, filter by name or symbol, and sort them by price, market cap, and change in last 24-hours.</p>
+                <p className='mb-2 leading-5.5'>This project helps learning about routing, fetching data through API, sorting data, searching through the data, no. of data per page and other important stuff to deal with ReactJS projects in future.</p>
+                <p className='mb-2'>For more visit <a target='_blank' href='https://dhrm.tech' className='text-blue-400'>this.</a></p>
             </div>
         </div>
     </div>

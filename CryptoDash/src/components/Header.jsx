@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function Header() {
   return (
-    <div className='text-blue-600 font-bold text-xl flex justify-evenly items-center'>
+    <div className='text-blue-600 font-bold text-xl flex flex-wrap justify-evenly items-center'>
         <h1
         className='text-white font-bold text-2xl m-4'
         >🪙 Home of Cryptos</h1>
