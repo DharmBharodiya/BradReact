@@ -3,14 +3,19 @@ import React from 'react'
 function FilterSearch({filter, onFilterChange}) {
   return (
     <div
-    className='w-[100%] mr-4'
+    className='mr-4 flex-1/2'
     >
         <input
-        id="Filter Search"
-        placeholder='Search coins....'
-        value={filter}
-        onChange={(e) => onFilterChange(e.target.value)}
-        className='bg-white text-black w-full px-4 py-1 rounded-sm'
+            id="filter-search"
+            type="search"
+            inputMode="search"
+            autoCapitalize="off"
+            autoCorrect="off"
+            autoComplete="off"
+            placeholder='Search coins...'
+            value={filter}
+            onChange={(e) => onFilterChange(e.target.value.toLowerCase())}
+            className='bg-white text-black w-full px-4 py-1 rounded-sm'
         />
     </div>
   )
