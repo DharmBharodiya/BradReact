@@ -15,7 +15,7 @@ function FilterSearch({filter, onFilterChange}) {
             placeholder='Search coins...'
             value={filter}
             onChange={(e) => onFilterChange(e.target.value.toLowerCase())}
-            className='bg-white text-black w-full px-4 py-1 rounded-sm'
+            className='bg-[#101010] text-white w-full px-4 py-1 rounded-sm relative left-0'
         />
     </div>
   )

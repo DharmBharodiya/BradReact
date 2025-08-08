@@ -3,7 +3,7 @@ import React from 'react'
 function SortSelector({sortBy, onSortByChange}) {
   return (
      <div
-        className='relative p-1 rounded-sm'
+        className='relative p-1 rounded-sm left-0 mt-1'
         >
           <label htmlFor='limit' className='text-white mr-1 font-semibold'>Sort: </label>
           <select className='bg-[#101010] p-1 rounded-sm text-white' id="limit" value={sortBy} onChange={(e) => onSortByChange(e.target.value)}>
