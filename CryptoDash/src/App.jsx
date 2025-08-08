@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 const API_URL = import.meta.env.VITE_API_URL;
 import {Routes, Route} from "react-router-dom";
 import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import Header from './components/Header';
 
 
 
@@ -53,19 +55,26 @@ function App() {
 
   
   return (
-   <Routes>
-      <Route path='/' element={<HomePage
-          coins={coins}
-          loading={loading}
-          error={error}
-          limit={limit}
-          filter={filter}
-          sortBy={sortBy}
-          setLimit={setLimit}
-          setSortBy={setSortBy}
-          setFilter={setFilter}
-      />}/>
-   </Routes>
+   <>
+    <Header/>
+    <Routes>
+        <Route path='/' element={<HomePage
+            coins={coins}
+            loading={loading}
+            error={error}
+            limit={limit}
+            filter={filter}
+            sortBy={sortBy}
+            setLimit={setLimit}
+            setSortBy={setSortBy}
+            setFilter={setFilter}
+        />}/>
+        <Route
+        path='/about' element={<AboutPage/>}
+        />
+    </Routes>
+
+   </>
   )
 }
 

@@ -49,9 +49,9 @@ function HomePage({
      <div
     className='bg-gray-900 p-4'
     >
-      <h1
+      {/* <h1
       className='text-white font-bold text-2xl m-4'
-      >🪙 Home of Cryptos</h1>
+      >🪙 Home of Cryptos</h1> */}
 
       {loading && <p>Loading....</p>}
       {error && <p>{error}</p>}
