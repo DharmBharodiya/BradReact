@@ -4,11 +4,11 @@ function AboutPage() {
   return (
     <div className='w-full flex justify-center items-center'>
         <div
-        className='bg-[#101010]/80 w-[80%] flex justify-center items-center flex-col rounded-lg p-4 text-white m-4 text-lg'
+        className='bg-[#101010]/80 w-[95%] md:w-[80%] flex justify-center items-center flex-col rounded-lg p-4 text-white m-4 text-lg'
         >
             <h1 className='font-bold text-4xl text-left justify-start mb-4'>About</h1>
             <div
-            className='w-[60%]'
+            className='w-[75%] md:w-[60%]'
             >
                 <p className='mb-2 leading-5.5'><span className='text-amber-500 italic'>Home of Cryptos,</span> is a simple React App that shows realtime cryptocurrency data, served using CoinGecko API.</p>
                 <p className='mb-2 leading-5.5'>You can explore the top cryptocurrency by market cap, filter by name or symbol, and sort them by price, market cap, and change in last 24-hours.</p>
