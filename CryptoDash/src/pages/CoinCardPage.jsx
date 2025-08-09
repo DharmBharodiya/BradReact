@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import Spinner from '../components/Spinner';
+import CoinChart from '../components/CoinChart';
 
 const API_URL = import.meta.env.VITE_COIN_API_URL;
 
@@ -70,6 +71,11 @@ function CoinCardPage() {
               <h1 className='text-lg md:text-xl'><span className='font-bold'>All Time Low: </span>${coin.market_data.atl.usd.toLocaleString()} on{" "} {new Date(coin.market_data.atl_date.usd).toLocaleDateString()}</h1>
               <h1 className='text-lg md:text-xl'><span className='font-bold'>Last Updated: </span>{new Date(coin.market_data.last_updated).toLocaleDateString()}</h1>
             </div>
+
+            <CoinChart
+            coinId={coin.id}
+            />
+
             <div
             className='coin-links flex-col flex text-blue-500 text-xl text-center mt-4'
             >
