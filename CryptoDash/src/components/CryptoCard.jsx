@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+import {Link} from "react-router-dom";
 
 function CryptoCard({coin}) {
   return (
-    <div
+   <Link to={`/coin/${coin.id}`}>
+        <div
           key={coin.id}
           className='bg-[#101010] text-white rounded-md p-4 hover:scale-102 transition-all duration-150 cursor-pointer hover:shadow-2xl shadow-black/50'
           >
@@ -23,6 +25,7 @@ function CryptoCard({coin}) {
               <p><span className='font-semibold'>Market Cap: </span>{coin.market_cap.toLocaleString()}</p>
             </div>
           </div>
+   </Link>
   )
 }
 

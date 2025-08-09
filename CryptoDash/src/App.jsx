@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import Header from './components/Header';
 import NotFoundPage from './pages/NotFoundPage';
-
+import CoinCardPage from './pages/CoinCardPage';
 
 
 function App() {
@@ -73,6 +73,7 @@ function App() {
         <Route
         path='/about' element={<AboutPage/>}
         />
+        <Route path="/coin/:id" element={<CoinCardPage/>}/>
         <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
 
