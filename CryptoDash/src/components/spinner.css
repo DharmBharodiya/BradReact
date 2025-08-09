@@ -1,0 +1,18 @@
+.spinner{
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    border-radius: 100%;
+    border: 8px solid oklch(70.4% 0.04 256.788);
+    border-left: 8px solid oklch(54.6% 0.245 262.881);
+    animation: turnaround 0.8s infinite ease-in-out;
+}
+
+@keyframes turnaround{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

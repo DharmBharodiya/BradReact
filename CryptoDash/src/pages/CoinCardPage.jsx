@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 const API_URL = import.meta.env.VITE_COIN_API_URL;
 
@@ -37,11 +38,12 @@ function CoinCardPage() {
       className='bg-white p-6 rounded-md m-6 w-[95%] md:w-[60%]  flex justify-center items-center flex-col'
       >
         <Link to="/" className='text-blue-700 font-semibold'>←Back to Home</Link>
+        {/* important to check if coin is loaded or not by coin ? so that if the coin is not loaded it does not stop the app and throw an error, and instead handles it gently. */}
         <h1
         className='font-black text-2xl my-2'
         >{coin ? `${coin.name} (${coin.symbol.toUpperCase()})` : "Coin details not loaded yet.."}</h1>
         
-        {loading && <p>Loading..</p>}
+        {loading && <Spinner/>}
         {error && <p>{error}</p>}
       
         {!loading && !error && (

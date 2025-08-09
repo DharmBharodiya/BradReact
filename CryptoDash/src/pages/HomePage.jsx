@@ -3,6 +3,7 @@ import CryptoCard from '../components/CryptoCard'
 import CardSelector from '../components/CardSelector';
 import FilterSearch from '../components/FilterSearch';
 import SortSelector from '../components/SortSelector';
+import Spinner from '../components/Spinner';
 
 function HomePage({
     coins,
@@ -53,7 +54,7 @@ function HomePage({
       className='text-white font-bold text-2xl m-4'
       >🪙 Home of Cryptos</h1> */}
 
-      {loading && <p>Loading....</p>}
+      {loading && <Spinner/>}
       {error && <p>{error}</p>}
 
       <div

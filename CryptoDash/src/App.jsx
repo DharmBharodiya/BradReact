@@ -7,7 +7,6 @@ import Header from './components/Header';
 import NotFoundPage from './pages/NotFoundPage';
 import CoinCardPage from './pages/CoinCardPage';
 
-
 function App() {
 
   const [coins, setCoins] = useState([]);
