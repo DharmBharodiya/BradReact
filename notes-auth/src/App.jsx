@@ -5,19 +5,29 @@ import AuthGate from './components/AuthGate';
 
 function App() {
 
-  // notes array that will store all the notes and its respective data
-  const [notes, setNotes] = useState(() => {
-    const notes = JSON.parse(localStorage.getItem("notes"));
-    return notes || [];
-  });
+  // active user
   const [user, setUser] = useState(() => {
     try { return JSON.parse(localStorage.getItem('na_active_user')); } catch { return null; }
   });
+  // notes for active user
+  const [notes, setNotes] = useState([]);
 
-  //everytime there is some change in the notes, respective update to its localstorage will be done as soon as the change is triggered.
+  // Load notes when user changes (i.e., login/logout)
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes))
-  }, [notes])
+    if (user?.username) {
+      const stored = JSON.parse(localStorage.getItem(`notes_${user.username}`)) || [];
+      setNotes(stored);
+    } else {
+      setNotes([]);
+    }
+  }, [user]);
+
+  // Persist notes per user
+  useEffect(() => {
+    if (user?.username) {
+      localStorage.setItem(`notes_${user.username}`, JSON.stringify(notes));
+    }
+  }, [notes, user]);
 
 
   const handleDelete = (id) => {
@@ -32,7 +42,7 @@ function App() {
   return (
     <div className='w-sm sm:w-lg mt-10 sm:p-6 p-4 bg-gray-200 rounded-lg shadow-lg mb-10 mx-auto relative'>
       <button
-        onClick={() => { localStorage.removeItem('na_active_user'); setUser(null); }}
+  onClick={() => { localStorage.removeItem('na_active_user'); setUser(null); }}
         className='absolute top-2 right-2 text-xs bg-purple-600 hover:bg-purple-800 text-white px-3 py-1 rounded-md shadow'
       >Logout</button>
       <div className='mb-4'>

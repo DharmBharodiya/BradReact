@@ -17,7 +17,8 @@ function NoteForm({notes, setNotes}) {
     description: '',
   })
 
-  const [isFormVisible, setIsFormVisible] = useState(false);
+    const [isFormVisible, setIsFormVisible] = useState(false);
+    const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -26,27 +27,23 @@ function NoteForm({notes, setNotes}) {
     })
   }
 
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
-
-    //validate the form 
-    if(!formData.title || !formData.description) return;
+        setError("");
+        //validate the form 
+        if(!formData.title.trim() || !formData.description.trim()) {
+            setError("Title and Description are required.");
+            return;
+        }
 
     const newNote = {id: Date.now(), ...formData};
 
     // add the formdata to the notes state
-    setNotes([
-        newNote,
-        ...notes
-    ]);
+    setNotes(prev => [newNote, ...prev]);
 
     // make all the fields back to default
-    setFormData({
-        title:'',
-        priority: 'medium',
-        category: 'work',
-        description: ''
-    })
+    setFormData({ title:'', priority: 'medium', category: 'work', description: '' })
+    setIsFormVisible(false);
 }
 
   return (
@@ -155,19 +152,18 @@ function NoteForm({notes, setNotes}) {
         }
         />
 
-        <div
-        className='flex flex-col mb-4'
-        >
-            <label htmlFor='description' className='font-medium'>Description</label>
-            <textarea
-            type="text"
-            name='description'
-            value={formData.description}
-            onChange={handleChange}
-            className='w-full px-2 py-1 border-1 rounded-lg'
-            placeholder='Write your note here.....'
-            ></textarea>
-        </div>
+                <div className='flex flex-col mb-4'>
+                    <label htmlFor='description' className='font-medium'>Description</label>
+                    <textarea
+                        name='description'
+                        value={formData.description}
+                        onChange={handleChange}
+                        className='w-full px-2 py-1 border-1 rounded-lg'
+                        placeholder='Write your note here.....'
+                        required
+                    />
+                </div>
+                {error && <p className='text-red-600 text-sm mb-2'>{error}</p>}
         <div>
             <button
             className='w-full bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-900 transition-all duration-150 cursor-pointer'
